@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>AVD Launcher</title>
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+	<link rel="stylesheet" href="./static/css/index.css" />
+	<link rel="stylesheet" href="./static/mdui/css/mdui.css" />
+</head>
+
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink mdui-appbar-with-toolbar">
+	<div class="mdui-appbar mdui-appbar-fixed">
+		<div class="mdui-toolbar mdui-color-theme">
+			<a href="javascript:;" class="mdui-btn mdui-btn-icon wcl-drawer-toggle">
+				<i class="mdui-icon material-icons">menu</i>
+			</a>
+			<a href="javascript:;" class="mdui-typo-title"></a>
+			<div class="mdui-toolbar-spacer"></div>
+			<a href="javascript:;" class="mdui-btn mdui-btn-icon wcl-paged avds-toolbar-refresh" wcl-state="list">
+				<i class="mdui-icon material-icons">refresh</i>
+			</a>
+			<a href="javascript:;" class="mdui-btn mdui-btn-icon wcl-paged avds-toolbar-discard" wcl-state="settings">
+				<i class="mdui-icon material-icons">clear</i>
+			</a>
+			<a href="javascript:;" class="mdui-btn mdui-btn-icon wcl-paged avds-toolbar-save" wcl-state="settings">
+				<i class="mdui-icon material-icons">check</i>
+			</a>
+		</div>
+	</div>
+	<div class="mdui-drawer wcl-drawer mdui-drawer-close" id="drawer">
+		<ul class="mdui-list">
+			<li class="mdui-subheader">Manage</li>
+			<li class="mdui-list-item mdui-ripple wcl-page-select mdui-list-item-active" wcl-page="list" wcl-page-title="Virtual Devices" wcl-page-selected>
+				<i class="mdui-list-item-icon mdui-icon material-icons">devices</i>
+				<div class="mdui-list-item-content">Virtual Devices</div>
+			</li>
+			<li class="mdui-subheader">System</li>
+			<li class="mdui-list-item mdui-ripple wcl-page-select" wcl-page-title="Settings" wcl-page="settings">
+				<i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+				<div class="mdui-list-item-content">Settings</div>
+			</li>
+		</ul>
+	</div>
+	<div class="wcl-page-containers" wcl-page="list">
+		<div class="wcl-void-container avds-vds-contents" wcl-state="loading">
+			<wcl-void icon="access_time" title="Loading Devices" loading="true"></wcl-void>
+		</div>
+		<div class="wcl-void-container avds-vds-contents" wcl-state="error">
+			<wcl-void icon="error" title="Error">
+				Please check settings and set up properly<br />
+				Alternatively, try running 'avdmanager list avd' by yourself<br />
+				to find out other issues
+			</wcl-void>
+		</div>
+		<div class="wcl-void-container avds-vds-contents" wcl-state="empty">
+			<wcl-void icon="remove_circle" title="No Devices">
+				You could create one with Android Studio<br />
+				Fast creation options are COMING SOON™
+			</wcl-void>
+		</div>
+		<div class="avds-vds-contents" wcl-state="content">
+			<h3>Installed Devices</h3>
+			<ul class="mdui-list avds-avd-list">
+			</ul>
+		</div>
+	</div>
+	<div class="wcl-page-containers" wcl-page="settings">
+		<div class="mdui-container">
+			<h1>Settings</h1>
+			<h2 class="settings-subtitle">Android SDK Location</h2>
+			<wcl-settings-field-text key="sdk_root" label="Android SDK root"></wcl-settings-field-text>
+			<wcl-settings-field-text key="cli_ver" label="SDK command-line tools version"></wcl-settings-field-text>
+			<p class="settings-explain">You need to install android SDK command-line tools in order to use AVD Starter. You can do it by using SDK Manager in Android Studio.</p>
+			<h2 class="settings-subtitle">Functionalities</h2>
+			<p class="mdui-checkbox-o">
+				<wcl-settings-field-check key="func_reset_system" label="Enable reset system"></wcl-settings-field-check><br />
+				<wcl-settings-field-check key="func_wipe_data" label="Enable wipe data"></wcl-settings-field-check><br />
+				<wcl-settings-field-check key="func_force_stop" label="Enable force stop"></wcl-settings-field-check><br />
+				<wcl-settings-field-check key="func_writable_system" label="Boot with writable system image"></wcl-settings-field-check>
+			</p>
+			<p class="settings-explain">Writable system image allows for system modifications, such as installing ARM support and Rooting. Changes to system in one virtual device does not affect another.</p>
+		</div>
+	</div>
+</body>
+<script>
+	window.mdui = require('./static/mdui/js/mdui.min.js');
+	window.$ = mdui.$;
+	require('./static/js/common/render.js');
+</script>
+<script wcl-category="test">
+$(() => {
+});
+</script>
+
+</html>

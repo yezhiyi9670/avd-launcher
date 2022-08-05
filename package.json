@@ -1,0 +1,45 @@
+{
+  "name": "avd-launcher",
+  "version": "0.1.0",
+  "main": "main.js",
+  "icon": "./icon/launcher.png",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make --platform=win32 --arch=ia32"
+  },
+  "keywords": [],
+  "author": "yezhiyi9670",
+  "description": "A frontend UI for launching Android Virtual Devices (avd) without having to start Android Studio.",
+  "license": "MIT License",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.65",
+    "@electron-forge/maker-deb": "^6.0.0-beta.65",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.65",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
+    "@electron-forge/maker-zip": "^6.0.0-beta.65",
+    "electron": "^20.0.1"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^3.5.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./icon/launcher",
+        "name": "avd-launcher",
+        "asar": true
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "avd_launcher"
+          }
+        }
+      ]
+    }
+  }
+}
