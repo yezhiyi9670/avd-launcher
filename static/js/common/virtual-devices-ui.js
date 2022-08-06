@@ -77,7 +77,7 @@ const child_process = require('child_process');
 						})
 					)
 					.append(
-						create_menu_item('Force Stop').addClass('avds-avd-menu-statable')
+						create_menu_item('Force stop').addClass('avds-avd-menu-statable')
 						.attr('wcl-state', 'on')
 						.disabled(!SettingsProvider.get('func_force_stop'))
 						.on('click', () => {

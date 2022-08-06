@@ -20,7 +20,8 @@ body {
 	height: calc(100%);
 	overflow-y: auto;
 }
-.wcl-page-containers .mdui-container {
+.wcl-page-containers .mdui-container,
+.wcl-page-containers .wcl-container-full {
 	margin-bottom: 72px;
 }
 .wcl-page-containers {
