@@ -38,10 +38,26 @@ module.exports = {
 		validator_arg: ['sdk_root', 'cli_ver'],
 		default: 'latest'
 	},
+	preexec: {
+		type: 'text',
+		validator: () => {
+			return {pass: true, message: 'You can use this to set environment variables.'}
+		},
+		validator_arg: [],
+		default: ''
+	},
 	emulator_args: {
 		type: 'text',
 		validator: () => {
 			return {pass: true, message: 'Please do not include -writable-system.'}
+		},
+		validator_arg: [],
+		default: ''
+	},
+	qemu_args: {
+		type: 'text',
+		validator: () => {
+			return {pass: true, message: 'Arguments to pass to qemu core.'}
 		},
 		validator_arg: [],
 		default: ''

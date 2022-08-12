@@ -80,7 +80,11 @@ const child_process = require('child_process');
 			if(this.isRunning()) {
 				return {pass: false, error: 'already_running', message: "Emulator is already running."};
 			}
-			let command = `"${emulator_exec}"${useWritableSystem ? ' -writable-system' : ''} ${SettingsProvider.get('emulator_args')} -avd ${this.name}`;
+			let command = `"${emulator_exec}"${useWritableSystem ? ' -writable-system' : ''} ${SettingsProvider.get('emulator_args')} -avd ${this.name} -qemu ${SettingsProvider.get('qemu_args')}`;
+			let preexec = SettingsProvider.get('preexec');
+			if(preexec != '') {
+				command = preexec + '&' + command;
+			}
 			child_process.exec(command);
 			return {pass: true, message: "Emulator launched."};
 		};
