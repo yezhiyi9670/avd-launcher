@@ -38,6 +38,14 @@ module.exports = {
 		validator_arg: ['sdk_root', 'cli_ver'],
 		default: 'latest'
 	},
+	emulator_args: {
+		type: 'text',
+		validator: () => {
+			return {pass: true, message: 'Please do not include -writable-system.'}
+		},
+		validator_arg: [],
+		default: ''
+	},
 	func_reset_system: {
 		type: 'bool',
 		default: true

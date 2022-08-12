@@ -80,7 +80,7 @@ const child_process = require('child_process');
 			if(this.isRunning()) {
 				return {pass: false, error: 'already_running', message: "Emulator is already running."};
 			}
-			let command = `"${emulator_exec}"${useWritableSystem ? ' -writable-system' : ''} -avd ${this.name}`;
+			let command = `"${emulator_exec}"${useWritableSystem ? ' -writable-system' : ''} ${SettingsProvider.get('emulator_args')} -avd ${this.name}`;
 			child_process.exec(command);
 			return {pass: true, message: "Emulator launched."};
 		};
