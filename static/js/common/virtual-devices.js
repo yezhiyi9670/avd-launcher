@@ -51,7 +51,7 @@ const child_process = require('child_process');
 			}
 			let code = await new Promise((resolve, reject) => {
 				child_process.exec(`taskkill /f /pid "${pid}"`, (code) => {
-					resolve(code.code);
+					resolve(code ? code.code : 0);
 				});
 			});
 			if(!code || code == 128) {
